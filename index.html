@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Farha Naaz – Learn, Earn & Shine ✨</title>
+  <meta name="description" content="Join 3000+ women learning in-demand digital skills and earning from home. Start today with Farha Naaz!">
+  <meta property="og:image" content="https://i.ibb.co/97Vs99D/Screenshot-2026-06-18-at-2-52-47-PM.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    :root {
+      --ink:        #0A0707;
+      --charcoal:   #100D0D;
+      --card-bg:    #181214;
+      --card-alt:   #1E171A;
+      --rose:       #C9847C;
+      --rose-light: #E8B4AD;
+      --rose-pale:  rgba(201,132,124,0.10);
+      --rose-line:  rgba(201,132,124,0.28);
+      --gold:       #C9A84C;
+      --gold-light: #E8C96A;
+      --white:      #FFFFFF;
+      --off-white:  #F5EFEE;
+      --muted:      #9A8886;
+      --border:     rgba(201,132,124,0.20);
+      --deep:       #080506;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--charcoal);
+      color: var(--off-white);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+    .rose-rule {
+      width: 48px; height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-light));
+      border-radius: 2px;
+      margin: 0.6rem auto;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: transparent;
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%; top: 0;
+      z-index: 1000;
+      transition: all 0.4s;
+      border-bottom: 1px solid transparent;
+    }
+    .navbar.scrolled {
+      background: rgba(8,5,6,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom-color: var(--rose-line);
+      padding: 0.6rem 0;
+    }
+    .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--rose-light) !important;
+      letter-spacing: 0.4px;
+    }
+    .nav-link {
+      color: rgba(245,239,238,0.65) !important;
+      font-weight: 500;
+      margin: 0 0.4rem;
+      font-size: 0.82rem;
+      transition: color 0.3s;
+    }
+    .nav-link:hover { color: var(--rose-light) !important; }
+    .btn-nav {
+      background: transparent;
+      color: var(--rose-light) !important;
+      border: 1px solid var(--rose);
+      padding: 0.4rem 1.1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.3s;
+    }
+    .btn-nav:hover { background: var(--rose); color: var(--ink) !important; }
+
+    /* ── HERO ── */
+    .hero-section {
+      min-height: 100vh;
+      background: var(--deep);
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,132,124,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,132,124,0.04) 1px, transparent 1px);
+      background-size: 55px 55px;
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,132,124,0.12) 0%, transparent 70%);
+      top: -80px; right: -80px;
+      pointer-events: none;
+      animation: breathe 8s ease-in-out infinite;
+    }
+    .hero-glow2 {
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+      bottom: 100px; left: -50px;
+      pointer-events: none;
+      animation: breathe 10s ease-in-out infinite reverse;
+    }
+    @keyframes breathe {
+      0%,100% { transform: scale(1); opacity: 0.7; }
+      50%      { transform: scale(1.2); opacity: 1; }
+    }
+
+    .hero-photo-bg {
+      position: absolute; inset: 0; z-index: 1;
+    }
+    .hero-photo-bg img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-photo-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,5,6,0.25) 0%,
+        rgba(8,5,6,0.10) 30%,
+        rgba(8,5,6,0.65) 65%,
+        rgba(8,5,6,0.97) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding: 0 16px 44px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--rose-line);
+      padding: 5px 14px;
+      border-radius: 50px;
+      color: var(--rose-light);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      background: rgba(201,132,124,0.09);
+    }
+    .hero-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.85rem;
+    }
+    .hero-headline .rose-word { color: var(--rose-light); }
+    .hero-headline em { font-style: italic; color: var(--gold-light); }
+
+    .hero-sub {
+      font-size: 0.9rem;
+      color: rgba(245,239,238,0.70);
+      margin: 0 0 1.4rem;
+      line-height: 1.7;
+    }
+
+    /* ── ROSE BUTTON ── */
+    .btn-rose {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #C9847C, #E8B4AD);
+      color: var(--ink);
+      padding: 0.85rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.3px;
+      box-shadow: 0 8px 24px rgba(201,132,124,0.28);
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-rose::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transition: left 0.5s;
+    }
+    .btn-rose:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,132,124,0.40); color: var(--ink); }
+    .btn-rose:hover::after { left: 150%; }
+
+    .btn-rose-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--rose-light);
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: 1px solid var(--rose);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-rose-outline:hover { background: var(--rose); color: var(--ink); box-shadow: 0 8px 24px rgba(201,132,124,0.30); }
+
+    /* ── COUNTDOWN ── */
+    .countdown-wrap {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 0 0 1.4rem;
+    }
+    .countdown-label {
+      font-size: 0.62rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+    .countdown-timer { display: flex; gap: 8px; justify-content: center; }
+    .cd-item {
+      text-align: center;
+      background: rgba(201,132,124,0.07);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      flex: 1;
+    }
+    .cd-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      line-height: 1;
+    }
+    .cd-unit {
+      font-size: 0.55rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--charcoal); padding: 60px 0; }
+    .photo-frame {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--rose-line);
+      box-shadow: 0 20px 55px rgba(0,0,0,0.55), 0 0 0 1px var(--rose-line);
+    }
+    .photo-frame img { width: 100%; height: auto; display: block; }
+
+    .section-eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .mentor-role {
+      color: var(--rose-light);
+      font-weight: 500;
+      font-size: 0.82rem;
+      margin-bottom: 1.2rem;
+    }
+    .about-body {
+      color: rgba(245,239,238,0.68);
+      font-size: 0.88rem;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+    .about-list { list-style: none; padding: 0; margin-bottom: 1.2rem; }
+    .about-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(201,132,124,0.09);
+      font-size: 0.86rem;
+      color: var(--off-white);
+    }
+    .about-list li:last-child { border-bottom: none; }
+    .about-list .check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-line);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--rose-light);
+      flex-shrink: 0;
+      font-size: 0.65rem;
+    }
+
+    /* ── STAT CARDS ── */
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 0.8rem;
+      text-align: center;
+      transition: all 0.35s;
+    }
+    .stat-card:hover { transform: translateY(-4px); border-color: var(--rose); box-shadow: 0 10px 28px rgba(201,132,124,0.12); }
+    .counter {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ── FEEDBACK CAROUSEL ── */
+    .feedback-viewport { overflow: hidden; margin: 1.5rem 0; }
+    .feedback-track {
+      display: flex; gap: 14px;
+      width: max-content;
+      animation: scrollLeft 30s linear infinite;
+    }
+    .feedback-track:hover { animation-play-state: paused; }
+    @keyframes scrollLeft {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .feedback-item {
+      flex-shrink: 0;
+      width: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4), 0 0 0 1px var(--rose-line);
+      background: #000;
+    }
+    .feedback-item img { width: 100%; height: auto; display: block; }
+
+    /* ── STEPS ── */
+    .steps-section { background: var(--ink); padding: 60px 0; position: relative; }
+    .steps-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,132,124,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,132,124,0.025) 1px, transparent 1px);
+      background-size: 55px 55px;
+      pointer-events: none;
+    }
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1rem;
+      transition: all 0.35s;
+      height: 100%;
+    }
+    .step-card:hover { transform: translateY(-5px); border-color: var(--rose); box-shadow: 0 12px 32px rgba(201,132,124,0.10); }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(201,132,124,0.12);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .step-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--rose-line);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--rose-light);
+      margin-bottom: 0.7rem;
+      background: var(--rose-pale);
+    }
+    .step-card h3 { font-family: 'Playfair Display', serif; font-size: 0.98rem; color: var(--white); margin-bottom: 0.4rem; }
+    .step-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* ── COACH SECTION ── */
+    .coach-section { background: var(--charcoal); padding: 60px 0; }
+    .coach-stat-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 0.75rem;
+      transition: all 0.3s;
+    }
+    .coach-stat-row:hover { border-color: var(--rose); transform: translateX(3px); }
+    .coach-icon {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--rose-pale);
+      border: 1px solid var(--rose-line);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .coach-stat-row .big-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--rose-light);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .coach-stat-row .label { font-size: 0.75rem; color: var(--muted); }
+    .highlight-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-light));
+    }
+    .highlight-box .big-rose {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--rose-light);
+      font-weight: 700;
+    }
+
+    /* ── FAQ ── */
+    .faq-section { background: var(--ink); padding: 60px 0; }
+    .accordion-item {
+      background: var(--card-bg) !important;
+      border: 1px solid var(--border) !important;
+      border-radius: 10px !important;
+      margin-bottom: 0.6rem;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .accordion-item:hover { border-color: var(--rose) !important; }
+    .accordion-button {
+      background: var(--card-bg) !important;
+      color: var(--off-white) !important;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 1.1rem 1.2rem;
+      box-shadow: none !important;
+    }
+    .accordion-button:not(.collapsed) { color: var(--rose-light) !important; background: var(--card-alt) !important; }
+    .accordion-button::after { filter: invert(0.7) sepia(1) saturate(2) hue-rotate(310deg); }
+    .accordion-body {
+      background: var(--card-alt);
+      color: var(--muted);
+      padding: 0 1.2rem 1.1rem;
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-section { background: var(--charcoal); padding: 60px 0; }
+    .cta-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0,0,0,0.40);
+      position: relative;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--rose-light), var(--rose));
+    }
+    .info-chip {
+      background: rgba(201,132,124,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.9rem;
+      transition: all 0.3s;
+    }
+    .info-chip:hover { border-color: var(--rose); background: rgba(201,132,124,0.09); transform: translateY(-2px); }
+    .info-chip strong { display: block; font-size: 0.8rem; color: var(--rose-light); margin-bottom: 0.15rem; }
+    .info-chip span { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #050304;
+      padding: 50px 0 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--rose-light);
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+    .footer-text { color: var(--muted); font-size: 0.82rem; line-height: 1.75; }
+    .footer h5 {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 0.55rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: all 0.3s; display: inline-block; }
+    .footer-links a:hover { color: var(--rose-light); padding-left: 3px; }
+    .social-icons { display: flex; gap: 0.7rem; margin-top: 1.1rem; }
+    .social-icon {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: rgba(201,132,124,0.06);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-icon:hover { background: var(--rose); color: var(--ink); border-color: var(--rose); }
+    .copyright {
+      text-align: center;
+      padding-top: 22px;
+      margin-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .copyright span { color: var(--rose-light); }
+
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      width: 54px; height: 54px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.38);
+      z-index: 999;
+      text-decoration: none;
+      transition: all 0.3s;
+      animation: waPulse 2.5s infinite;
+    }
+    .wa-float:hover { transform: scale(1.1); color: white; }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 4px 18px rgba(37,211,102,0.38); }
+      50%      { box-shadow: 0 4px 30px rgba(37,211,102,0.6); }
+    }
+
+    /* ── FORM POPUP ── */
+    .form-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88);
+      backdrop-filter: blur(10px);
+      z-index: 9999;
+      opacity: 0; visibility: hidden;
+      transition: all 0.35s;
+    }
+    .form-backdrop.show { opacity: 1; visibility: visible; }
+    #formContainer {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) scale(0.92);
+      z-index: 10000;
+      max-width: 440px; width: 92%; max-height: 90vh;
+      opacity: 0; visibility: hidden;
+      transition: all 0.35s;
+      overflow-y: auto;
+    }
+    #formContainer.show {
+      opacity: 1; visibility: visible;
+      transform: translate(-50%,-50%) scale(1);
+    }
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--rose-line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 24px 55px rgba(0,0,0,0.55), 0 0 0 1px rgba(201,132,124,0.10);
+    }
+    .form-header {
+      background: linear-gradient(135deg, #0E0A0B, #181214);
+      border-bottom: 1px solid var(--rose-line);
+      padding: 1.6rem;
+      text-align: center;
+      position: relative;
+    }
+    .form-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--rose), transparent);
+    }
+    .form-header h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--rose-light);
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .form-header p { color: var(--muted); font-size: 0.8rem; margin: 0; }
+    .form-body { padding: 1.5rem; }
+
+    .form-group-c { margin-bottom: 1rem; }
+    .form-label-c {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .form-input-c {
+      width: 100%;
+      background: var(--ink);
+      border: 1px solid rgba(201,132,124,0.22);
+      color: var(--off-white);
+      padding: 0.75rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.3s;
+      outline: none;
+      appearance: none;
+    }
+    .form-input-c:focus { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(201,132,124,0.12); }
+    .form-input-c::placeholder { color: rgba(154,136,134,0.45); }
+    .form-input-c option { background: var(--card-bg); color: var(--off-white); }
+    .form-row-c { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .btn-submit-c {
+      background: linear-gradient(135deg, #C9847C, #E8B4AD);
+      color: var(--ink);
+      border: none;
+      padding: 0.95rem;
+      width: 100%;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-submit-c:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(201,132,124,0.34); }
+
+    .btn-close-c {
+      position: absolute; top: 12px; right: 14px;
+      background: none; border: none;
+      color: var(--muted); font-size: 1.5rem;
+      cursor: pointer; transition: color 0.2s; line-height: 1;
+    }
+    .btn-close-c:hover { color: var(--rose-light); }
+
+    /* Privacy Modal */
+    .pp-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      backdrop-filter: blur(10px);
+      z-index: 10001;
+      opacity: 0; visibility: hidden;
+      transition: all 0.3s;
+    }
+    .pp-overlay.show { opacity: 1; visibility: visible; }
+    .pp-modal {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) scale(0.95);
+      width: 90%; max-width: 480px; max-height: 80vh;
+      background: var(--card-bg);
+      border: 1px solid var(--rose-line);
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      opacity: 0; visibility: hidden;
+      transition: all 0.3s;
+      z-index: 10002;
+      overflow: hidden;
+    }
+    .pp-overlay.show .pp-modal { opacity: 1; visibility: visible; transform: translate(-50%,-50%) scale(1); }
+    .pp-header { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.3rem; border-bottom: 1px solid var(--border); }
+    .pp-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--rose-light); }
+    .pp-close { background: none; border: none; font-size: 1.4rem; color: var(--muted); cursor: pointer; }
+    .pp-close:hover { color: var(--rose-light); }
+    .pp-body { padding: 1.2rem; overflow-y: auto; font-size: 0.84rem; line-height: 1.7; color: var(--muted); }
+    .pp-body h3 { font-size: 0.88rem; font-weight: 700; margin: 1rem 0 0.4rem; color: var(--off-white); }
+    .pp-body h3:first-child { margin-top: 0; }
+    .pp-footer { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid var(--border); font-size: 0.75rem; text-align: center; color: var(--muted); }
+
+    /* ── RESPONSIVE ── */
+    @media (min-width: 768px) {
+      .hero-section { align-items: center; padding: 110px 0 70px; }
+      .hero-photo-bg { display: none; }
+      .hero-content { padding: 0; text-align: center; }
+      .hero-headline { font-size: 3.4rem; }
+      .hero-sub { font-size: 1rem; margin: 0 auto 1.6rem; max-width: 520px; }
+      .countdown-wrap { max-width: 400px; margin: 0 auto 1.6rem; }
+      .section-title { font-size: 2.3rem; }
+      .btn-rose { width: auto; }
+      .btn-rose-outline { width: auto; }
+    }
+    @media (max-width: 767px) {
+      .hero-section { min-height: 100svh; }
+      .btn-rose, .btn-rose-outline { font-size: 0.84rem; padding: 0.8rem 1.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Farha Naaz ✨</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      style="border-color:rgba(201,132,124,0.35);">
+      <span class="navbar-toggler-icon" style="filter:invert(0.8) sepia(1) saturate(1.5) hue-rotate(310deg);"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#" class="btn-nav open-any" data-source="Navbar">
+        <i data-lucide="sparkles" width="12"></i>
+        Join Now
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section" id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+
+  <!-- Mobile full-screen photo -->
+  <div class="hero-photo-bg">
+    <img src="https://i.ibb.co/97Vs99D/Screenshot-2026-06-18-at-2-52-47-PM.png"
+         alt="Farha Naaz – Digital Mentor">
+  </div>
+
+  <div class="container position-relative" style="z-index:2;">
+    <!-- Desktop two-column -->
+    <div class="d-none d-md-flex row align-items-center g-5 justify-content-center">
+      <div class="col-md-5">
+        <div class="photo-frame">
+          <img src="https://i.ibb.co/97Vs99D/Screenshot-2026-06-18-at-2-52-47-PM.png"
+               alt="Farha Naaz"
+               style="max-height:600px; object-fit:cover; object-position:top;">
+        </div>
+      </div>
+      <div class="col-md-7 text-start">
+        <div class="hero-eyebrow"><i data-lucide="crown" width="11"></i> Premium Digital Mentorship</div>
+        <h1 class="hero-headline">Join <em>3,000+ Women</em><br>Earning <span class="rose-word">From Home</span> Online</h1>
+        <p class="hero-sub">Students, Housewives & Professionals — sab apne phone se ghar baith ke real income bana rahe hain. Ab aapki baari hai!</p>
+        <div class="countdown-wrap" style="margin-left:0; max-width:400px;">
+          <div class="countdown-label">⏳ Next Batch Starts In</div>
+          <div class="countdown-timer">
+            <div class="cd-item"><div class="cd-val" id="days">00</div><div class="cd-unit">Days</div></div>
+            <div class="cd-item"><div class="cd-val" id="hours">00</div><div class="cd-unit">Hours</div></div>
+            <div class="cd-item"><div class="cd-val" id="minutes">00</div><div class="cd-unit">Mins</div></div>
+            <div class="cd-item"><div class="cd-val" id="seconds">00</div><div class="cd-unit">Secs</div></div>
+          </div>
+        </div>
+        <button class="btn-rose open-any" data-source="Hero Desktop" style="width:auto;">
+          <i data-lucide="message-circle" width="17"></i>
+          Start Your Journey Today
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile text at bottom -->
+    <div class="d-md-none hero-content">
+      <div class="hero-eyebrow"><i data-lucide="crown" width="11"></i> Premium Digital Mentorship</div>
+      <h1 class="hero-headline">Join <em>3,000+ Women</em><br>Earning <span class="rose-word">From Home</span></h1>
+      <p class="hero-sub">Ghar baith ke phone se real income — students, housewives, aur professionals sab kar rahe hain!</p>
+      <div class="countdown-wrap">
+        <div class="countdown-label">⏳ Next Batch Starts In</div>
+        <div class="countdown-timer">
+          <div class="cd-item"><div class="cd-val" id="days2">00</div><div class="cd-unit">Days</div></div>
+          <div class="cd-item"><div class="cd-val" id="hours2">00</div><div class="cd-unit">Hours</div></div>
+          <div class="cd-item"><div class="cd-val" id="minutes2">00</div><div class="cd-unit">Mins</div></div>
+          <div class="cd-item"><div class="cd-val" id="seconds2">00</div><div class="cd-unit">Secs</div></div>
+        </div>
+      </div>
+      <button class="btn-rose open-any" data-source="Hero Mobile">
+        <i data-lucide="message-circle" width="17"></i>
+        Start Your Journey Today
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <!-- Desktop photo -->
+      <div class="col-lg-5 d-none d-lg-block">
+        <div class="photo-frame">
+          <img src="https://i.ibb.co/97Vs99D/Screenshot-2026-06-18-at-2-52-47-PM.png"
+               alt="Farha Naaz – Digital Mentor">
+        </div>
+      </div>
+      <!-- Mobile compact photo -->
+      <div class="col-12 d-lg-none">
+        <div class="d-flex align-items-center gap-3 mb-3"
+             style="background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:1rem;">
+          <img src="https://i.ibb.co/97Vs99D/Screenshot-2026-06-18-at-2-52-47-PM.png"
+               alt="Farha Naaz"
+               style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--rose);">
+          <div>
+            <p style="font-family:'Playfair Display',serif;color:var(--white);font-size:1.1rem;font-weight:700;margin:0 0 3px;">Farha Naaz</p>
+            <p style="font-size:0.75rem;color:var(--rose-light);margin:0;">Digital Entrepreneur · Income Coach</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <span class="section-eyebrow">Your Mentor</span>
+        <h2 class="section-title">Hi, I'm Farha Naaz 💫</h2>
+        <div class="rose-rule" style="margin-left:0;"></div>
+        <p class="mentor-role mt-2">✦ Digital Entrepreneur · Online Income Expert · Women Empowerment Coach</p>
+        <p class="about-body">💻 <strong style="color:var(--off-white);">Main bhi exactly aap ki jagah thi — koi experience nahi, sirf ek phone aur seekhne ki chahat thi.</strong> Aaj main 3000+ students, housewives aur professionals ko ghar baith ke real income banana sikha rahi hoon.</p>
+        <p class="about-body">🎯 Mera approach bilkul practical aur step-by-step hai. Koi bhi fluff nahi, koi false promises nahi. Sirf ek clear system jo actually kaam karta hai — daily mentorship ke saath!</p>
+        <ul class="about-list">
+          <li><span class="check">✓</span> Digital Entrepreneur & Online Income Expert</li>
+          <li><span class="check">✓</span> 5+ Years of proven digital experience</li>
+          <li><span class="check">✓</span> 3000+ women mentored across India</li>
+          <li><span class="check">✓</span> 24/7 WhatsApp support & community access</li>
+        </ul>
+        <button class="btn-rose-outline open-any" data-source="About Section" style="width:auto;">
+          <i data-lucide="message-circle" width="15"></i>
+          Connect on WhatsApp
+        </button>
+        <div class="row g-2 mt-3">
+          <div class="col-4"><div class="stat-card"><div class="counter" data-target="5" data-suffix="+">0</div><div class="stat-label">Years Exp.</div></div></div>
+          <div class="col-4"><div class="stat-card"><div class="counter" data-target="3000" data-suffix="+">0</div><div class="stat-label">Lives Changed</div></div></div>
+          <div class="col-4"><div class="stat-card"><div class="counter" data-target="98" data-suffix="%">0</div><div class="stat-label">Success Rate</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SUCCESS STORIES ===== -->
+<section style="background:var(--ink); padding:60px 0;">
+  <div class="container">
+    <div class="text-center mb-4">
+      <span class="section-eyebrow">Real Results</span>
+      <h2 class="section-title" style="color:var(--white);">✨ Real Success Stories</h2>
+      <div class="rose-rule"></div>
+      <p class="mt-2" style="color:var(--muted);font-size:0.84rem;">100% real results from women in our community</p>
+    </div>
+    <div class="feedback-viewport">
+      <div class="feedback-track">
+        <!-- Set 1 -->
+        <div class="feedback-item"><img src="https://i.ibb.co/0pCfBdZ9/eshita-1.jpg" alt="Success 1" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/xNv4hpk/eshita-2.jpg"  alt="Success 2" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/Q78CL1JX/eshita-3.jpg" alt="Success 3" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/qLSsY6KC/eshita-4.jpg" alt="Success 4" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/RptXGpMn/eshita-5.jpg" alt="Success 5" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/8n4D3WLj/eshita-6.jpg" alt="Success 6" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/PzgHNS9g/eshita.jpg"   alt="Success 7" loading="lazy"></div>
+        <!-- Duplicate for seamless loop -->
+        <div class="feedback-item"><img src="https://i.ibb.co/0pCfBdZ9/eshita-1.jpg" alt="Success 1" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/xNv4hpk/eshita-2.jpg"  alt="Success 2" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/Q78CL1JX/eshita-3.jpg" alt="Success 3" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/qLSsY6KC/eshita-4.jpg" alt="Success 4" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/RptXGpMn/eshita-5.jpg" alt="Success 5" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/8n4D3WLj/eshita-6.jpg" alt="Success 6" loading="lazy"></div>
+        <div class="feedback-item"><img src="https://i.ibb.co/PzgHNS9g/eshita.jpg"   alt="Success 7" loading="lazy"></div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn-rose open-any" data-source="Stories Section" style="width:auto;">
+        📲 Become Our Next Success Story
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STEPS ===== -->
+<section class="steps-section" id="steps">
+  <div class="container position-relative" style="z-index:1;">
+    <div class="text-center mb-4">
+      <span class="section-eyebrow">The Process</span>
+      <h2 class="section-title" style="color:var(--white);">What Happens When You Join?</h2>
+      <div class="rose-rule"></div>
+      <p class="mt-2" style="color:var(--muted);max-width:500px;margin:10px auto 0;font-size:0.82rem;">4 simple steps — zero se confident online earner tak</p>
+    </div>
+    <div class="row g-2">
+      <div class="col-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i data-lucide="message-circle" width="18"></i></div>
+          <h3>Instant Connection</h3>
+          <p>Direct WhatsApp access for personal guidance from day one</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i data-lucide="graduation-cap" width="18"></i></div>
+          <h3>Skill Mastery</h3>
+          <p>Proven step-by-step training at your own pace, on your phone</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i data-lucide="users" width="18"></i></div>
+          <h3>Daily Mentorship</h3>
+          <p>24/7 support, weekly sessions & exclusive women's community</p>
+        </div>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-icon"><i data-lucide="trending-up" width="18"></i></div>
+          <h3>Start Earning</h3>
+          <p>Begin building real income from Week 1, confidently</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button class="btn-rose-outline open-any" data-source="Steps" style="width:auto;">
+        <i data-lucide="rocket" width="15"></i>
+        Get Started Now
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KNOW YOUR MENTOR ===== -->
+<section class="coach-section">
+  <div class="container">
+    <div class="text-center mb-4">
+      <span class="section-eyebrow">By The Numbers</span>
+      <h2 class="section-title">Know Your Mentor</h2>
+      <div class="rose-rule"></div>
+    </div>
+    <div class="row g-3 align-items-center">
+      <div class="col-lg-6">
+        <div class="coach-stat-row">
+          <div class="coach-icon">⭐</div>
+          <div>
+            <div class="big-num"><span class="counter" data-target="5" data-suffix="+">0</span></div>
+            <div class="label">Years of Experience</div>
+          </div>
+        </div>
+        <div class="coach-stat-row">
+          <div class="coach-icon">👩</div>
+          <div>
+            <div class="big-num"><span class="counter" data-target="3000" data-suffix="+">0</span></div>
+            <div class="label">Women Mentored</div>
+          </div>
+        </div>
+        <div class="coach-stat-row">
+          <div class="coach-icon">🏆</div>
+          <div>
+            <div class="big-num"><span class="counter" data-target="24" data-suffix="/7">0</span></div>
+            <div class="label">Support Available</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="highlight-box">
+          <h3 class="serif mb-3" style="font-size:1.3rem;color:var(--white);">🔥 Now it's YOUR time</h3>
+          <div class="row text-center g-2 mb-3">
+            <div class="col-6">
+              <div class="big-rose"><span class="counter" data-target="500" data-suffix="+">0</span></div>
+              <p style="font-size:0.75rem;color:var(--muted);margin:3px 0 0;">Already Earning</p>
+            </div>
+            <div class="col-6">
+              <div class="big-rose">Week 1</div>
+              <p style="font-size:0.75rem;color:var(--muted);margin:3px 0 0;">First Income Target</p>
+            </div>
+          </div>
+          <hr style="border-color:var(--border);margin:1rem 0;">
+          <p style="font-size:0.84rem;color:var(--off-white);">📱 Sab kuch aapke <strong style="color:var(--rose-light);">smartphone</strong> se — no laptop needed! Sirf 1–2 hours daily.</p>
+          <button class="btn-rose open-any mt-3" data-source="Mentor Stats">
+            <i data-lucide="send" width="15"></i>
+            Message on WhatsApp Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="text-center mb-4">
+      <span class="section-eyebrow">Got Questions?</span>
+      <h2 class="section-title" style="color:var(--white);">Frequently Asked Questions</h2>
+      <div class="rose-rule"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">Is mein exactly kya sikhaya jaayega?</button></h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Digital skills: Social Media Management, Content Creation, Digital Marketing, Personal Branding aur bahut kuch — sab apne smartphone se. 100% legitimate aur real skill-based kaam.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Kya yeh program safe aur genuine hai?</button></h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">100% genuine training. Hazaron women consistently earn kar rahi hain. Real testimonials is page par dekh sakte hain — koi scam nahi, koi false promise nahi.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">Daily kitna time dena hoga?</button></h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Sirf 1-2 hours daily. Fully flexible — students, working professionals aur housewives — sab ke liye design kiya gaya hai.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Earning kab se shuru hogi?</button></h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Most dedicated students 3-4 weeks mein pehli income dekhne lagte hain. Steady aur sustainable income typically 3 month mark tak aati hai.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Koi prior experience chahiye?</button></h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Bilkul nahi! Agar aap WhatsApp aur Instagram use kar sakti hain, toh aap yeh kar sakti hain. Step-by-step guidance di jaati hai zero se.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq6">Join karne ke baad kya support milega?</button></h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Daily mentorship, 24/7 WhatsApp support, weekly strategy sessions aur lifetime community access. Aap kabhi akeli nahi hongi is journey mein.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq7">Koi investment chahiye?</button></h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Ek nominal fee sab kuch cover karti hai. Koi hidden cost nahi, koi surprise charge nahi. Complete details ke liye WhatsApp pe connect karein.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header"><button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq8">Kya job ya studies ke saath kar sakte hain?</button></h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Haan bilkul! Yeh busy logon ke liye specifically design kiya gaya hai. Apne spare time mein apni pace se seekhein aur kamayein.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="cta-section">
+  <div class="container text-center px-3">
+    <span class="section-eyebrow">Ab Karo Shuru</span>
+    <h2 class="section-title mb-2" style="color:var(--white);">Ready to Transform Your Life?</h2>
+    <div class="rose-rule mb-3"></div>
+    <p style="color:var(--muted);max-width:520px;margin:0 auto 2rem;font-size:0.84rem;">Hazaron women ki tarah aap bhi apni financial independence ki journey shuru karein. Ab aapki baari hai.</p>
+
+    <div class="cta-card p-3 p-md-4 mb-4 mx-auto" style="max-width:680px;">
+      <h3 class="serif mb-1" style="color:var(--white);font-size:1.4rem;">📲 Kaise Shuru Karein?</h3>
+      <p style="color:var(--muted);margin-bottom:1.4rem;font-size:0.82rem;">Simply WhatsApp pe yeh details bhejein:</p>
+      <div class="row g-2 mb-3 text-start">
+        <div class="col-4"><div class="info-chip h-100"><strong>📝 Naam</strong><span>Apna Full Name</span></div></div>
+        <div class="col-4"><div class="info-chip h-100"><strong>🎂 Umar</strong><span>Apni Age</span></div></div>
+        <div class="col-4"><div class="info-chip h-100"><strong>💼 Status</strong><span>Student/Working/Homemaker</span></div></div>
+      </div>
+      <p class="fw-semibold mb-3" style="color:var(--rose-light);font-size:0.88rem;">📌 Save My Number: +91 91629 41336</p>
+      <button class="btn-rose open-any" data-source="Final CTA">
+        <i data-lucide="send" width="16"></i>
+        Connect on WhatsApp Now
+      </button>
+      <div class="mt-3 p-2" style="background:rgba(201,132,124,0.04);border:1px solid var(--border);border-radius:8px;">
+        <h4 style="font-size:0.8rem;color:var(--off-white);font-weight:600;margin-bottom:0.5rem;">⏳ Message karne ke 24 Hours mein:</h4>
+        <div class="row">
+          <div class="col-md-6"><p style="font-size:0.76rem;color:var(--muted);margin:0;">📋 Complete Program Details</p></div>
+          <div class="col-md-6"><p style="font-size:0.76rem;color:var(--muted);margin:0;">🗺 Aapka Personal Roadmap</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p style="color:var(--muted);font-style:italic;font-size:0.78rem;margin-bottom:0.5rem;">"Empower with skills · Support every dream · From zero to earner"</p>
+    <p style="font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--rose-light);">❤️ With Love & Strength, Farha Naaz</p>
+
+    <div class="mt-3">
+      <button class="btn btn-sm" id="privacyBtn"
+        style="font-size:0.7rem;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:50px;background:transparent;transition:all 0.3s;">
+        <i data-lucide="shield" width="11" style="vertical-align:middle;margin-right:3px;"></i>
+        Privacy Policy
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container px-3">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <span class="footer-brand">Farha Naaz ✨</span>
+        <p class="footer-text">Students, housewives aur professionals ko real digital skills ke through genuine income build karne mein help karna — yahi mera mission hai.</p>
+        <div class="social-icons">
+          <a href="https://wa.me/919162941336" class="social-icon" title="WhatsApp"><i data-lucide="message-circle" width="17"></i></a>
+          <a href="#" class="social-icon" title="Instagram"><i data-lucide="instagram" width="17"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <h5>Navigate</h5>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Farha</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <h5>Legal</h5>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openPrivacy();return false;">Privacy Policy</a></li>
+          <li><a href="#" onclick="openPrivacy();return false;">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright"><p class="mb-0">Made with <span>♦</span> for Farha Naaz | © 2025 All Rights Reserved</p></div>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/919162941336" class="wa-float" title="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- FORM BACKDROP -->
+<div class="form-backdrop" id="formBackdrop"></div>
+
+<!-- PRIVACY MODAL -->
+<div class="pp-overlay" id="ppOverlay">
+  <div class="pp-modal">
+    <div class="pp-header">
+      <div class="pp-title">Privacy Policy</div>
+      <button class="pp-close" id="ppClose">&times;</button>
+    </div>
+    <div class="pp-body">
+      <h3>Information We Collect</h3>
+      <p>Name, phone number, age aur profession jo aap hamari form mein provide karte hain.</p>
+      <h3>How We Use It</h3>
+      <p>Sirf program details share karne, mentorship support dene aur updates bhejne ke liye. Kabhi bhi third parties ko nahi becha jaata.</p>
+      <h3>Data Security</h3>
+      <p>Industry-standard security measures implement ki gayi hain. Data sirf authorized personnel dwara access kiya jaata hai.</p>
+      <h3>Your Rights</h3>
+      <p>Apna data kabhi bhi access, correct ya delete karein — WhatsApp pe contact karein.</p>
+      <h3>Disclaimer</h3>
+      <p>Results personal effort aur consistency par depend karte hain. Earnings vary per individual.</p>
+      <div class="pp-footer">© 2025 Farha Naaz Digital Mentorship. All rights reserved.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM POPUP -->
+<div id="formContainer">
+  <div class="form-card">
+    <div class="form-header">
+      <button class="btn-close-c" id="closeFormBtn">&times;</button>
+      <h2>Start Your Journey ✨</h2>
+      <p>Fill in your details to connect on WhatsApp</p>
+    </div>
+    <div class="form-body">
+      <input type="hidden" id="sourceInfo" name="sourceInfo">
+
+      <div class="form-group-c">
+        <label class="form-label-c" for="inp_name">Full Name</label>
+        <input id="inp_name" type="text" class="form-input-c" required placeholder="Enter your full name">
+      </div>
+
+      <div class="form-group-c">
+        <label class="form-label-c" for="inp_phone">WhatsApp Number</label>
+        <input id="inp_phone" type="tel" class="form-input-c" required maxlength="10" placeholder="10-digit number">
+      </div>
+
+      <div class="form-row-c">
+        <div class="form-group-c">
+          <label class="form-label-c" for="inp_age">Age</label>
+          <input id="inp_age" type="number" class="form-input-c" required min="15" max="65" placeholder="Age">
+        </div>
+        <div class="form-group-c">
+          <label class="form-label-c" for="inp_language">Language</label>
+          <select id="inp_language" class="form-input-c" required>
+            <option value="">Select</option>
+            <option value="hindi">Hindi</option>
+            <option value="english">English</option>
+            <option value="hinglish">Hinglish</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group-c">
+        <label class="form-label-c" for="inp_profession">Current Status</label>
+        <select id="inp_profession" class="form-input-c" required>
+          <option value="">Select your status</option>
+          <option>Student</option>
+          <option>Housewife</option>
+          <option>Working Professional</option>
+          <option>Entrepreneur</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn-submit-c" id="formSubmitBtn">
+        📲 Send & Connect on WhatsApp
+      </button>
+      <p style="font-size:0.7rem;color:var(--muted);text-align:center;margin-top:0.8rem;">
+        🔒 Aapki information safe hai aur kisi ke saath share nahi ki jaayegi
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  lucide.createIcons();
+
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAoH6qtB4GosxJ7dyleicLcJI7KGFvW36_EqIhi4aywZskEy905whWVWWdT-4twhoHlg/exec";
+  const WA_NUMBER  = "919162941336";
+
+  // Countdown to next Monday
+  function updateCountdown() {
+    const now = new Date();
+    const nextMonday = new Date();
+    nextMonday.setDate(now.getDate() + (1 + 7 - now.getDay()) % 7);
+    nextMonday.setHours(0,0,0,0);
+    if (now.getDay() === 1) nextMonday.setDate(now.getDate() + 7);
+    const diff = nextMonday - now;
+    const d = String(Math.floor(diff/(1000*60*60*24))).padStart(2,'0');
+    const h = String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+    const m = String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,'0');
+    const s = String(Math.floor((diff%(1000*60))/1000)).padStart(2,'0');
+    ['days','hours','minutes','seconds'].forEach((id,i) => {
+      const el = document.getElementById(id); if(el) el.textContent = [d,h,m,s][i];
+    });
+    ['days2','hours2','minutes2','seconds2'].forEach((id,i) => {
+      const el = document.getElementById(id); if(el) el.textContent = [d,h,m,s][i];
+    });
+  }
+  setInterval(updateCountdown, 1000); updateCountdown();
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Counter animation
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+        entry.target.classList.add('counted');
+        const target = +entry.target.getAttribute('data-target');
+        const suffix = entry.target.getAttribute('data-suffix') || '';
+        let cur = 0;
+        const inc = Math.max(1, Math.floor(target/50));
+        const t = setInterval(() => {
+          cur += inc;
+          if (cur >= target) { cur = target; clearInterval(t); }
+          entry.target.textContent = cur.toLocaleString() + suffix;
+        }, 30);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+  // Popup logic
+  const formBackdrop  = document.getElementById('formBackdrop');
+  const formContainer = document.getElementById('formContainer');
+  const closeFormBtn  = document.getElementById('closeFormBtn');
+  const ppOverlay     = document.getElementById('ppOverlay');
+  const ppClose       = document.getElementById('ppClose');
+  const sourceInfo    = document.getElementById('sourceInfo');
+
+  function openForm(source) {
+    sourceInfo.value = source || 'Website';
+    formBackdrop.classList.add('show');
+    formContainer.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeForm() {
+    formBackdrop.classList.remove('show');
+    formContainer.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  function openPrivacy() {
+    ppOverlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePrivacy() {
+    ppOverlay.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  formBackdrop.addEventListener('click', closeForm);
+  closeFormBtn.addEventListener('click', closeForm);
+  document.getElementById('privacyBtn').addEventListener('click', openPrivacy);
+  ppClose.addEventListener('click', closePrivacy);
+  ppOverlay.addEventListener('click', e => { if (e.target === ppOverlay) closePrivacy(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeForm(); closePrivacy(); } });
+
+  document.addEventListener('click', e => {
+    const trigger = e.target.closest('.open-any');
+    if (trigger && !trigger.closest('#formContainer')) {
+      e.preventDefault();
+      openForm(trigger.dataset.source || 'Website');
+    }
+  });
+
+  // Form submit
+  document.getElementById('formSubmitBtn').addEventListener('click', () => {
+    const name       = document.getElementById('inp_name').value.trim();
+    const phone      = document.getElementById('inp_phone').value.replace(/\D/g,'');
+    const age        = document.getElementById('inp_age').value;
+    const language   = document.getElementById('inp_language').value;
+    const profession = document.getElementById('inp_profession').value;
+    const source     = sourceInfo.value || 'Website';
+
+    if (!name || phone.length < 10 || !age || !language || !profession) {
+      alert('Please fill all fields correctly with a valid 10-digit phone number.');
+      return;
+    }
+
+    const msg = encodeURIComponent(
+      `Hello Farha Naaz! 👋\n\nMujhe aapke digital mentorship program mein interest hai. Yeh hain meri details:\n\nNaam: ${name}\nPhone: ${phone}\nUmar: ${age}\nLanguage: ${language}\nStatus: ${profession}\n\nPlease next steps share karein. Thank you! ✨`
+    );
+    window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+
+    const formData = new FormData();
+    formData.append('Timestamp',  new Date().toLocaleString());
+    formData.append('Name',       name);
+    formData.append('Phone',      phone);
+    formData.append('Age',        age);
+    formData.append('Language',   language);
+    formData.append('Profession', profession);
+    formData.append('Source',     source);
+    fetch(SCRIPT_URL, { method:'POST', body:formData, mode:'no-cors', keepalive:true }).catch(() => {});
+
+    setTimeout(() => closeForm(), 400);
+  });
+</script>
+</body>
+</html>
