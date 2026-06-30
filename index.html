@@ -1300,7 +1300,7 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAoH6qtB4GosxJ7dyleicLcJI7KGFvW36_EqIhi4aywZskEy905whWVWWdT-4twhoHlg/exec";
   const WA_NUMBER  = "918789658177";
 
-  // Countdown to next Monday
+  // ---- Countdown ----
   function updateCountdown() {
     const now = new Date();
     const nextMonday = new Date();
@@ -1321,12 +1321,12 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
   }
   setInterval(updateCountdown, 1000); updateCountdown();
 
-  // Navbar scroll
+  // ---- Navbar scroll ----
   window.addEventListener('scroll', () => {
     document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
   });
 
-  // Counter animation
+  // ---- Counter animation ----
   const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
@@ -1345,7 +1345,7 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
   }, { threshold: 0.3 });
   document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
 
-  // Popup logic
+  // ---- Popup logic ----
   const formBackdrop  = document.getElementById('formBackdrop');
   const formContainer = document.getElementById('formContainer');
   const closeFormBtn  = document.getElementById('closeFormBtn');
@@ -1380,6 +1380,7 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
   ppOverlay.addEventListener('click', e => { if (e.target === ppOverlay) closePrivacy(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeForm(); closePrivacy(); } });
 
+  // Only opens the lead-capture form. Does NOT fire any tracking event.
   document.addEventListener('click', e => {
     const trigger = e.target.closest('.open-any');
     if (trigger && !trigger.closest('#formContainer')) {
@@ -1388,7 +1389,11 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
     }
   });
 
-  // Form submit
+  /* ===== Single Source of Truth for Contact Event =====
+     Fires ONLY once, ONLY when the lead form is actually
+     submitted and the user is redirected to WhatsApp. */
+  let contactEventFired = false;
+
   document.getElementById('formSubmitBtn').addEventListener('click', () => {
     const name       = document.getElementById('inp_name').value.trim();
     const phone      = document.getElementById('inp_phone').value.replace(/\D/g,'');
@@ -1407,6 +1412,12 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
     );
     window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
 
+    // Fire Contact event exactly once, only on real submitted leads
+    if (!contactEventFired && typeof fbq !== 'undefined') {
+      contactEventFired = true;
+      fbq('track', 'Contact');
+    }
+
     const formData = new FormData();
     formData.append('Timestamp',  new Date().toLocaleString());
     formData.append('Name',       name);
@@ -1419,25 +1430,6 @@ src="https://www.facebook.com/tr?id=1278437214362836&ev=PageView&noscript=1"
 
     setTimeout(() => closeForm(), 400);
   });
-</script>
-
-<script>
-/* ===== Contact Event Tracking (One Per Session) ===== */
-(function() {
-  var contactTracked = false;
-
-  document.addEventListener('click', function(e) {
-    if (contactTracked) return;
-
-    var btn = e.target.closest('a[href*="wa.me"], a[href*="whatsapp"], .btn-rose, .btn-rose-outline, .btn-nav, .wa-float');
-    if (!btn) return;
-
-    contactTracked = true;
-    if (typeof fbq !== 'undefined') {
-      fbq('track', 'Contact');
-    }
-  });
-})();
 </script>
 
 </body>
